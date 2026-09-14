@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with hompi.  If not, see <http://www.gnu.org/licenses/>.
 
-import os
+import subprocess
 import sys
 import datetime
 from .config import config
@@ -39,4 +39,5 @@ def log_stderr(data):
     sys.stderr.write('{} - {}\n'.format(cur_date, data))
 
 def os_async_command(command):
-    os.popen(command, shell=True)
+    result = subprocess.run([command], capture_output=True, text=True, shell=True)
+    log_stdout('UTILS', result.stdout, LOG_DEBUG)
