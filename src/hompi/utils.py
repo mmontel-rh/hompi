@@ -39,4 +39,4 @@ def log_stderr(data):
     sys.stderr.write('{} - {}\n'.format(cur_date, data))
 
 def os_async_command(command):
-    os.popen(command)
+    os.popen(command, shell=True)
